@@ -1,5 +1,6 @@
 const state = {
-    home: true,
+    items: [],
+    item: {},
 };
 
 export default state;

@@ -7,7 +7,7 @@ const StepView: React.FC<StepViewProps> = ({
     children,
     ...rest
 }) => {
-    const active = useStore("stepView") || 0;
+    const [active] = useStore("stepView") || 0;
 
     const setActive = (newActive: number) => {
         GlassX.set({ stepView: newActive });

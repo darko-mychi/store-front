@@ -1,0 +1,35 @@
+.auth__layout {
+    transition: all .3s ease-in;
+
+    &.-cart-open {
+        margin-left: -$sidecart-width !important;
+        margin-right: $sidecart-width !important;
+        overflow-x: hidden !important;
+
+        .side__cart {
+            width: $sidecart-width !important;
+        }
+    }
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fafafa !important;
+    animation: pageIn .5s;
+
+    &:not(.homepage) {
+        padding-top: $layout-header-height;
+    }
+
+    &__content {
+        padding: $layout-padding-y $layout-padding-x;
+        width: 100%;
+        max-width: $page-max-width;
+    }
+}
+
+.vm--modal {
+    top: unset !important;
+}

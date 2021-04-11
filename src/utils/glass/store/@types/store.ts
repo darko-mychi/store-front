@@ -1,4 +1,5 @@
 import { Reducer } from "react";
+import { Setter as BaseSetter } from "reactn/types/use-global";
 
 export interface Options {
     state?: State;
@@ -30,3 +31,5 @@ export interface Reducers {
 };
 
 export type Hook = "onReady" | "onSave" | "onRead" | "onReducerInvoke";
+
+export type Setter = BaseSetter<any, string | number | symbol>;

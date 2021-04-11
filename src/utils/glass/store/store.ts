@@ -152,9 +152,7 @@ export default class GlassXBase {
 }
 
 export const useStore = (item: string) => {
-    const [value] = useGlobal<any>(item);
-
-    return value;
+    return useGlobal<any>(item);
 }
 
 export const useReducer = (reducer: string) => {

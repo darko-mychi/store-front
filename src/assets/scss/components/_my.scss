@@ -1,0 +1,106 @@
+.my-button {
+	transition: all ease .3s;
+	background: $my-primary !important;
+
+	&.danger {
+		background: $my-danger !important;
+
+		&:hover {
+			background: darken($my-danger, 20%) !important;
+		}
+	}
+
+	&.transparent {
+		background: $my-transparent !important;
+
+		&:hover {
+			background: darken(rgba(1, 1, 1, 0.01), 5%) !important;
+		}
+	}
+
+	&:hover {
+		background: darken($my-primary, 20%) !important;
+	}
+
+	&:disabled {
+		opacity: .8 !important;
+	}
+
+	&.-outlined {
+		background: transparent !important;
+		border: 1px solid $my-primary !important;
+
+		.con-vs-loading {
+			background: none !important;
+		}
+
+		&:hover {
+			background: lighten($my-primary, 40%) !important;
+		}
+
+		* {
+			color: $my-primary !important;
+		}
+
+		&.danger {
+			border: 1px solid $my-danger !important;
+
+			&:hover {
+				background: lighten($my-danger, 35%) !important;
+			}
+		}
+	}
+
+	.my-button-loader {
+		opacity: 0 !important;
+	}
+
+	.con-vs-loading {
+		background: $my-primary !important;
+	}
+
+	.my-button-content {
+		.my-button-icon {
+			margin-right: 5px;
+			color: white;
+		}
+
+		.vs-button-text {
+			font-weight: normal;
+		}
+	}
+}
+
+.h-scroll-container {
+	overflow-x: scroll;
+	margin-left: -60px;
+	padding-left: 60px;
+
+	.card-spacer {
+		min-width: 40px !important;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: rgb(255, 255, 255);
+		width: calc(100% - 123px);
+		margin-left: 60px;
+		margin-right: 60px;
+	}
+
+	&::-webkit-scrollbar {
+		height: 2px;
+		background-color: #fff;
+		width: calc(100% - 123px);
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: #9b9b9b;
+		border-radius: 0px;
+		margin-left: 60px;
+		margin-right: 60px;
+
+		&:hover {
+			background-color: rgb(71, 71, 71);
+		}
+	}
+}

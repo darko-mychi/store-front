@@ -28,6 +28,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @import "./topnav";
+@import "./auth";
+@import "./guest";
 
 @mixin bg-primary {
 	background: linear-gradient(248.26deg, rgba(219, 218, 238, 0.42) 1.46%, #DDE3F1 34.21%, #E2FBFA 100%) !important;

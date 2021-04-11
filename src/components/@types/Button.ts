@@ -6,7 +6,7 @@ export interface ButtonProps {
     children?: any;
     loader?: React.Component | React.FC | JSX.Element | string,
     variant?: "rounded" | "outlined" | "raised" | "fab",
-    color?: "red" | "transparent" | "blue" | "green" | "teal" | "gold" | "purple" | "default",
+    color?: "red" | "transparent" | "blue" | "green" | "teal" | "gold" | "purple" | "black" | "default",
     icon?: React.Component | React.FC | JSX.Element | string,
     loaderColor?: string,
     loaderSize?: number,
