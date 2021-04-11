@@ -1,0 +1,10 @@
+.page {
+    transition: all .3s ease;  
+    
+    * {
+        transition: all .3s ease;
+    }
+}
+
+@import "./home";
+@import "./auth";

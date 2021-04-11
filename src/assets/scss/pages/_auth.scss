@@ -1,0 +1,79 @@
+.auth-modal.vm--container {
+    .vm--modal {
+        padding: 0 !important;
+        width: 380px !important;
+
+        .auth__form {
+            padding: 40px 30px;
+
+            &__title {
+                h2 {
+                    font-weight: 600;
+                    font-size: 17.5px;
+                    line-height: 26px;
+                    color: #000000;
+                }
+
+                p {
+                    font-size: 14px;
+                    line-height: 19px;
+                    text-align: center;
+                    color: #77798A;
+                }
+            }
+
+            input.form-control {
+                background: #EDEDED;
+                border: 1px solid #E3E3E3;
+                box-sizing: border-box;
+                border-radius: 4px;
+                height: 51px;
+                color: black !important;
+            }
+
+            small {
+                color: rgb(241, 28, 0);
+            }
+
+            .auth__comment {
+                font-size: 10px;
+                line-height: 14px;
+                text-align: center;
+                color: #77798A;
+
+                .auth__comment__link {
+                    color: #3e97e9 !important;
+                    text-decoration: none !important;
+                }
+            }
+        }
+
+        .reset__password__link {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .auth__tip {
+            * {
+                color: #777777 !important;
+                font-family: Open Sans;
+                font-size: 14px;
+            }
+
+            .auth__link {
+                margin-left: 5px;
+                color: black !important;
+                cursor: pointer;
+            }
+        }
+
+        .auth__footer {
+            background: #cecece;
+            color: #777777 !important;
+            padding: 20px 0px;
+            font-size: 14px;
+            line-height: 19px;
+        }
+    }
+}

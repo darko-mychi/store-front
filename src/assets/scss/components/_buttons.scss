@@ -1,0 +1,91 @@
+.btn-rounded, .btn-fab {
+    border-radius: 100px !important;
+}
+
+.btn-fab {
+    padding: 10px !important;
+}
+
+@mixin buttonStyles($color: $blue, $text: #fff) {
+    background-color: $color;
+    border: 1px solid darken($color, 5%);
+    outline-color: $color;
+    color: $text;
+
+    &:hover {
+        background-color: darken($color, 6%);
+    }
+
+    &.btn-outlined {
+        @if $color != transparent {
+            background-color: $text;
+            color: $color;
+            border: 1px solid $color;
+            outline-color: $color;
+
+            &:hover {
+                color: $text;
+                background-color: $color;
+            }
+        } @else {
+            border: 1px solid lighten($text, 80%);
+            outline-color: lighten($text, 80%);
+
+            &:hover {
+                color: white;
+                background-color: $text;
+            }
+        }
+    }
+}
+
+.btn-primary {
+    @include buttonStyles();
+}
+
+.btn-lg {
+    padding: 15px 40px !important;
+}
+
+.c-btn {
+    padding: 10px 30px;
+    border-radius: 2px;
+    transition: unset;
+
+    & > span:first-child {
+        margin-right: 20px;
+    }
+
+    &.-color-red, &.btn-danger {
+        @include buttonStyles(rgb(224, 22, 8));
+    }
+
+    &.-color-transparent {
+        @include buttonStyles(transparent, black);
+    }
+
+    &.-color-blue {
+        @include buttonStyles($blue);
+    }
+
+    &.-color-gold {
+        @include buttonStyles(rgb(221, 171, 7));
+    }
+
+    &.-color-purple {
+        @include buttonStyles(rgb(125, 6, 204));
+    }
+
+    &.-color-green {
+        @include buttonStyles(rgba(0, 177, 0, 0.822));
+    }
+
+    &.btn-outlined:not(:hover) {
+        background: transparent !important;
+    }
+
+    &:active, &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}

@@ -1,0 +1,40 @@
+.footer {
+    .row {
+        h2 {
+            font-family: SF Pro Display;
+            font-size: 18px;
+            line-height: 21px;
+            color: #151648;
+            margin-bottom: 30px;
+        }
+    }
+
+    &__logo {
+        width: 70px;
+        
+        @include md-up {
+            width: 160px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        @include md {
+            width: 120px;
+        }
+    }
+
+    a, p {
+        display: block;
+        font-size: 16px;
+        line-height: 19px;
+        color: #41436D;
+        margin-bottom: 18px;
+    }
+
+    &__contact__info {
+        p {
+            width: 80%;
+        }
+    }
+}
