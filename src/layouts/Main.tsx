@@ -1,4 +1,5 @@
 import Footer from "./components/Footer";
+import SideCart from "./components/SideCart";
 import TopNav from "./components/TopNav"
 
 const Main: React.FC<any> = ({
@@ -10,6 +11,7 @@ const Main: React.FC<any> = ({
             <div className="auth__layout__content">
                 <TopNav />
                 <div className="layout__content">
+                    <SideCart />
                     <div className={className}>
                         {children}
                     </div>
