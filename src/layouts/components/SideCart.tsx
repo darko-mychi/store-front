@@ -2,12 +2,13 @@ import Button from "@/components/Button"
 import Icon from "@/components/Icon";
 import { GlassRouter } from "@/utils/glass/router";
 import { useStore } from "@/utils/glass/store";
-import { useState } from "react";
-import { CartItemCardProps, CartState } from "./@types/SideCart";
+import { CartItemCardProps, CartState, SideCartProps } from "./@types/SideCart";
 
-const SideCart = () => {
+const SideCart: React.FC<SideCartProps> = ({
+    cartOpen,
+    setCartOpen
+}) => {
     const [cart]: CartState = useStore("cart");
-    const [cartOpen, setCartOpen] = useState(false);
 
     const toggleSideCart = () => {
         setCartOpen(!cartOpen);
@@ -33,22 +34,24 @@ const SideCart = () => {
 
     return (
         <>
-            <Button
-                className="floating__cart"
-                onClick={toggleSideCart}
-            >
-                <div className="floating__cart__content flex flex:center-between">
-                    <Icon>shopping_cart</Icon>
-                    <span className="item__count ml:_1">
-                        {cart.length}
-                        {cart.length === 1 ? "Item" : "Items"}
-                    </span>
-                </div>
-            </Button>
-            <div className={`side__cart ${cartOpen && "-cart-open"}`}>
+            {!cartOpen && (
+                <Button
+                    className="floating__cart"
+                    onClick={toggleSideCart}
+                >
+                    <div className="floating__cart__content flex flex:center-between">
+                        <Icon>shopping_cart</Icon>
+                        <span className="item__count ml:_1">
+                            {cart.length}{" "}
+                            {cart.length === 1 ? "Item" : "Items"}
+                        </span>
+                    </div>
+                </Button>
+            )}
+            <div className={`side__cart ${cartOpen && "-open"}`}>
                 <div className="side__cart__header flex flex:center-between">
                     <span className="title">
-                        {cart.length}
+                        {cart.length}{" "}
                         {cart.length === 1 ? "Item" : "Items"}
                     </span>
                     <Icon

@@ -59,10 +59,11 @@
 	position: fixed !important;
 	background: #262626;
 	right: 40px;
-	bottom: 90px;
+	bottom: 80px;
 	z-index: 99;
 	height: 65px !important;
 	width: 100px !important;
+	transition: all .3s ease;
 
 	.item__count {
 		display: none;
@@ -87,15 +88,20 @@
 }
 
 .side__cart {
-	width: 0;
+	width: 100%;
+	max-width: $sidecart-width;
 	transition: all 0.3s ease-in;
 	position: fixed;
-	right: 0;
+	right: -$sidecart-width;
 	background: white;
 	box-shadow: -2px 0px 15px rgba(0, 0, 0, 0.05);
 	z-index: 90;
 	bottom: 0;
 	height: 100%;
+
+	&.-open {
+		right: 0;
+	}
 	
 	&__header {
 		box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);

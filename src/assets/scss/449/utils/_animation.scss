@@ -3,7 +3,7 @@
 }
 
 .animation\:slide-down {
-	animation: slideUp .3s reverse;
+	animation: slideDown .3s;
 }
 
 .animation\:page-in {
@@ -17,6 +17,18 @@
 @keyframes slideUp {
 	0% {
 		transform: translateY(50%);
+		opacity: 0.1;
+	}
+
+	100% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+
+@keyframes slideDown {
+	0% {
+		transform: translateY(-50%);
 		opacity: 0.1;
 	}
 

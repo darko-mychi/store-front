@@ -12,7 +12,7 @@
         display: flex;
         
         .glass-modal__modal {
-            @extend .animation\:slide-up;
+            @extend .animation\:slide-down;
         }
     }
 

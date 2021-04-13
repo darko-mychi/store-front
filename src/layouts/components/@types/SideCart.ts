@@ -11,3 +11,8 @@ export interface CartItemCardProps {
 };
 
 export type CartState = [CartItem[], Setter];
+
+export interface SideCartProps {
+    setCartOpen: any;
+    cartOpen: boolean;
+};
