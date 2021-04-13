@@ -5,19 +5,24 @@ const Modal: React.FC<ModalProps> = ({
   name,
   className,
   close,
-  closeButton = false,
+  closeButton = true,
   children,
   show,
   size,
   pageScroll = true,
   ...rest
 }) => {
-  if (!close) {
-    close = () => {
+  let modalClose;
+
+  modalClose = (e: any) => {
+    if (!close) {
       modal.hide(name);
-      document.body.style.overflowY = "auto";
-    };
-  }
+    } else {
+      close(e);
+    }
+
+    document.body.style.overflowY = "auto";
+  };
 
   const checkModalStatus = useCallback(() => {
     if (!pageScroll && modal.isOpen(name)) {
@@ -33,22 +38,20 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <div
-      className={`gm ${className} ${
-        show ? "-modal-show" : "-modal-hide"
-      }`}
-      id={`${name}-modal`}
+      className={`rjsm__container ${className} ${show ? "-modal-show" : "-modal-hide"}`}
+      id={`${name}-rjsm-modal`}
     >
-      <div className="gm__overlay" onClick={close}></div>
-      <div className={`gm__modal -size-${size || "md"}`} {...rest}>
+      <div className="rjsm__overlay" onClick={modalClose}></div>
+      <div className={`rjsm__modal -size-${size || "md"}`} {...rest}>
         {closeButton && (
           <button
             onClick={close}
-            className="material-icons gm__modal__close"
+            className="material-icons rjsm__modal__close"
           >
             close
           </button>
         )}
-        <div className="gm__modal__content">{children}</div>
+        <div className="rjsm__modal__content">{children}</div>
       </div>
     </div>
   );
@@ -88,7 +91,7 @@ export class modal {
 
   public static findModal(name: string): HTMLElement | null
   {
-    return document.getElementById(`${name}-modal`);
+    return document.getElementById(`${name}-rjsm-modal`);
   }
 
   public static isOpen(name: string): boolean | null

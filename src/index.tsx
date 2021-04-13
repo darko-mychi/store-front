@@ -3,9 +3,11 @@ import ReactDOM from "react-dom";
 import AOS from "aos";
 
 import App from "./App";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/scss/index.scss";
 import "aos/dist/aos.css";
+import "react-ts-modal/css/styles.css";
 
 import reportWebVitals from "./config/reportWebVitals";
 import { unregister } from "./config/registerServiceWorker";

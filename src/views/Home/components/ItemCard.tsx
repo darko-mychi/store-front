@@ -1,4 +1,4 @@
-import { modal } from "@/utils/glass/modal";
+import { modal } from "react-ts-modal";
 import { setStore } from "@/utils/glass/store";
 import { ItemCardProps } from "./@types/Item";
 

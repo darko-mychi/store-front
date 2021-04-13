@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import Modal from "@/utils/glass/modal";
+import Modal from "react-ts-modal";
 import { useStore } from "@/utils/glass/store";
 import { useState } from "react";
 import { ItemState } from "./@types/Item";
