@@ -65,7 +65,7 @@ class HomeContainer extends React.Component<any> {
                     showLoadMore: false,
                 });
 			}
-		}, 30000);
+		}, 3000);
 	};
 
     setContainerState = (state: State) => {
