@@ -10,8 +10,17 @@ const SideCart: React.FC<SideCartProps> = ({
 }) => {
     const [cart]: CartState = useStore("cart");
 
+    const checkBodyScroll = (cartOpen: boolean) => {
+        if (cartOpen) {
+            document.body.style.overflowY = "hidden";
+        } else {
+            document.body.style.overflowY = "auto";
+        }
+    };
+
     const toggleSideCart = () => {
         setCartOpen(!cartOpen);
+        checkBodyScroll(!cartOpen);
     };
 
     const closeAndRoute = () => {
