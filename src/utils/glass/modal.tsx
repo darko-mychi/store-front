@@ -15,7 +15,7 @@ const Modal: React.FC<ModalProps> = ({
   if (!close) {
     close = () => {
       modal.hide(name);
-      checkModalStatus();
+      document.body.style.overflowY = "auto";
     };
   }
 
@@ -67,7 +67,7 @@ export class modal {
     modal.classList.add("-modal-show");
   }
 
-  public static hide(name: string) {
+  public static hide(name: string, callback: Function | null = null) {
     const modal = this.findModal(name);
 
     if (modal === null) {
@@ -79,6 +79,10 @@ export class modal {
 
     setTimeout(() => {
       modal.classList.remove("-modal-show");
+
+      if (callback) {
+        callback();
+      }
     }, 500);
   }
 
