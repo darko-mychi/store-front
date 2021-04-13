@@ -10,7 +10,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
             item,
         });
 
-        modal.show("game-details");
+        modal.show("item-details");
     };
 
     const itemImage = typeof item.image !== "string" ? item.image[0] : item.image;
@@ -25,7 +25,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
                     <div
                         className="item__card__console position:absolute"
                     >
-                        {item.discount}%
+                        -{item.discount}%
                     </div>
                 )
             }

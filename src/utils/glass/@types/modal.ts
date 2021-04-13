@@ -6,4 +6,5 @@ export interface ModalProps {
     children: any;
     show?: boolean;
     size?: string;
+    pageScroll?: boolean;
 };

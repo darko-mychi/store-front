@@ -1,3 +1,4 @@
+import { useCallback, useEffect } from "react";
 import { ModalProps } from "./@types/modal";
 
 const Modal: React.FC<ModalProps> = ({
@@ -8,13 +9,27 @@ const Modal: React.FC<ModalProps> = ({
   children,
   show,
   size,
+  pageScroll = true,
   ...rest
 }) => {
   if (!close) {
     close = () => {
       modal.hide(name);
+      checkModalStatus();
     };
   }
+
+  const checkModalStatus = useCallback(() => {
+    if (!pageScroll && modal.isOpen(name)) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "auto";
+    }
+  }, [name, pageScroll]);
+
+  useEffect(() => {
+    checkModalStatus();
+  });
 
   return (
     <div
@@ -44,6 +59,7 @@ export class modal {
     const modal = this.findModal(name);
 
     if (modal === null) {
+      console.warn(`\n"${name}" modal not found in DOM.`);
       return;
     }
 
@@ -55,6 +71,7 @@ export class modal {
     const modal = this.findModal(name);
 
     if (modal === null) {
+      console.warn(`\n"${name}" modal not found in DOM.`);
       return;
     }
 
@@ -62,9 +79,21 @@ export class modal {
     modal.classList.add("-modal-hide");
   }
 
-  protected static findModal(name: string): HTMLElement | null
+  public static findModal(name: string): HTMLElement | null
   {
     return document.getElementById(`${name}-modal`);
+  }
+
+  public static isOpen(name: string): boolean | null
+  {
+    const modal = this.findModal(name);
+
+    if (modal === null) {
+      console.warn(`\n"${name}" modal not found in DOM.`);
+      return null;
+    }
+
+    return modal.classList.contains("-modal-show");
   }
 }
 
