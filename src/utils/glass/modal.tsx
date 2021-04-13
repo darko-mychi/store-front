@@ -33,22 +33,22 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <div
-      className={`glass-modal ${className} ${
+      className={`gm ${className} ${
         show ? "-modal-show" : "-modal-hide"
       }`}
       id={`${name}-modal`}
     >
-      <div className="glass-modal__overlay" onClick={close}></div>
-      <div className={`glass-modal__modal -size-${size || "md"}`} {...rest}>
+      <div className="gm__overlay" onClick={close}></div>
+      <div className={`gm__modal -size-${size || "md"}`} {...rest}>
         {closeButton && (
           <button
             onClick={close}
-            className="material-icons glass-modal__modal__close"
+            className="material-icons gm__modal__close"
           >
             close
           </button>
         )}
-        <div className="glass-modal__modal__content">{children}</div>
+        <div className="gm__modal__content">{children}</div>
       </div>
     </div>
   );
@@ -75,8 +75,11 @@ export class modal {
       return;
     }
 
-    modal.classList.remove("-modal-show");
     modal.classList.add("-modal-hide");
+
+    setTimeout(() => {
+      modal.classList.remove("-modal-show");
+    }, 500);
   }
 
   public static findModal(name: string): HTMLElement | null

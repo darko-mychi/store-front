@@ -1,4 +1,4 @@
-.glass-modal {
+.gm {
     display: none;
     position: fixed;
     left: 0;
@@ -11,24 +11,43 @@
     &.-modal-show {
         display: flex;
         
-        .glass-modal__modal {
-            @extend .animation\:slide-down;
+        .gm__modal {
+            animation: modalFadeDown .5s;
+            opacity: 1;
+        }
+
+        .gm__overlay {
+            opacity: 1;
+        }
+    }
+
+    &.-modal-hide {
+        .gm__modal {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+
+        .gm__overlay {
+            opacity: 0;
         }
     }
 
     &__overlay {
         background-color: rgba(0, 0, 0, 0.5);
-        z-index: 100;
+        z-index: 1000;
         width: 100vw !important;
         height: 100vh !important;
         position: fixed;
+        transition: ease all .4s;
     }
 
     &__modal {
         background-color: white;
-        z-index: 200;
+        z-index: 2000;
         position: relative;
         width: 100%;
+        opacity: 0;
+        transition: ease all .4s;
 
         &__content {
             height: 100%;
@@ -58,4 +77,16 @@
             position: absolute;
         }
     }
+}
+
+@keyframes modalFadeDown {
+	0% {
+		transform: translateY(-20px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
 }

@@ -1,14 +1,14 @@
 .item-details {
     z-index: 200;
 
-    .glass-modal__modal {
+    .gm__modal {
         padding: 0;
         max-height: 550px;
         height: 100%;
         border-radius: 0;
     }
 
-    &.glass-modal {
+    &.gm {
         padding: 10px;
     }
 
