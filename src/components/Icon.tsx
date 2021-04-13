@@ -1,5 +1,4 @@
-import { HTMLProps } from "react";
-import { IconProps } from "./@types/Icon";
+import { IconElementProps, IconProps } from "./@types/Icon";
 
 const Icon: React.FC<IconProps> = ({
     type = "solid",
@@ -8,6 +7,7 @@ const Icon: React.FC<IconProps> = ({
     size,
     color,
     className,
+    ...rest
 }) => {
     let iconData;
 
@@ -17,12 +17,14 @@ const Icon: React.FC<IconProps> = ({
         iconData = icon;
     }
 
-    const others: HTMLProps<HTMLSpanElement> = {};
+    let others: IconElementProps = {};
 
     if (size) {
-        others.style = {
+        const style = {
             fontSize: size,
         };
+
+        others = {...style, ...rest};
     }
 
     return (
