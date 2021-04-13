@@ -2,11 +2,11 @@ import Button from "@/components/Button"
 import Icon from "@/components/Icon";
 import { GlassRouter } from "@/utils/glass/router";
 import { useStore } from "@/utils/glass/store";
-import { ItemsState } from "@/views/Home/components/@types/Item";
 import { useState } from "react";
+import { CartItemCardProps, CartState } from "./@types/SideCart";
 
 const SideCart = () => {
-    const [cart]: ItemsState = useStore("cart");
+    const [cart]: CartState = useStore("cart");
     const [cartOpen, setCartOpen] = useState(false);
 
     const toggleSideCart = () => {
@@ -45,7 +45,7 @@ const SideCart = () => {
                     </span>
                 </div>
             </Button>
-            <div className="side__cart">
+            <div className={`side__cart ${cartOpen && "-cart-open"}`}>
                 <div className="side__cart__header flex flex:center-between">
                     <span className="title">
                         {cart.length}
@@ -66,11 +66,14 @@ const SideCart = () => {
                         </div>
                     ) : (
                         <div className="side__cart__list">
-                            {/* <cart-game
-                                v-for="(item, index) in cart"
-                                :key="index"
-                                :data="item"
-                            /> */}
+                            {
+                                cart.map((item, index) => (
+                                    <CartItemCard
+                                        key={index}
+                                        item={item}
+                                    />
+                                ))
+                            }
                         </div>
                     )
                 }
@@ -89,6 +92,39 @@ const SideCart = () => {
                 </a>
             </div>
         </>
+    );
+};
+
+const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
+    const { quantity, image, name, currency, price } = item;
+
+    return (
+        <div className="cart-game__card flex">
+            <div className="cart-game__card__quantities">
+                <button>
+                    <Icon>add</Icon>
+                </button>
+                <div className="cart-game__card__quantity">
+                    {quantity}
+                </div>
+                <button>
+                    <Icon>remove</Icon>
+                </button>
+            </div>
+            <img
+                src={typeof image === "string" ? image : image[0]}
+                alt="Cart item"
+                className="cart-game__card__img"
+            />
+            <div className="cart-game__card__details">
+                <h2 className="cart-game__card__name">
+                    {name}
+                </h2>
+                <h5 className="cart-game__card__price mt:_1">
+                    {currency} {price}
+                </h5>
+            </div>
+        </div>
     );
 };
  
