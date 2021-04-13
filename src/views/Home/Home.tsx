@@ -8,9 +8,9 @@ import Hero from "./components/Hero";
 import ItemCard from "./components/ItemCard";
 import ItemDetails from "./components/ItemDetails";
 import SortBar from "./components/SortBar";
+import Main from "@/layouts/Main";
 
 const Home: React.FC<any> = ({
-	setState,
 	fetchItems,
 	state,
 }) => {
@@ -19,37 +19,37 @@ const Home: React.FC<any> = ({
 	const [items]: ItemsState = useStore("items");
 
 	return (
-		<div className="homepage page">
+		<Main className="homepage page">
 			<Hero />
 
 			<div className="page__content">
-				<SortBar />
+				{items?.length > 0 && <SortBar />}
 				<div className="item__cards row mt:0">
 					{
-						items && items.map((item, index) => (
+						items?.map((item, index) => (
 							<ItemCard
 								key={index}
 								item={item}
 							/>
 						))
 					}
+				</div>
+				<ItemDetails />
+				<div className="flex flex:center-all">
 					{
 						state.loadingItems && (
-							<div className="page__loader">
+							<div className="section__loader flex-col flex:center-all">
 								<ClipLoader />
 								<p>Loading items...</p>
 							</div>
 						)
 					}
-				</div>
-				{items && <ItemDetails />}
-				<div className="align-center">
 					{
 						// using pagination to "piece-load" content
 						(state.showLoadMore && !state.loadingItems) && (
 							<Button
 								onClick={() => fetchItems(state.pager)}
-								color="blue"
+								color="black"
 							>
 								load more
 							</Button>
@@ -57,7 +57,7 @@ const Home: React.FC<any> = ({
 					}
 				</div>
 			</div>
-		</div>
+		</Main>
 	);
 };
 
