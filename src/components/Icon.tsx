@@ -17,14 +17,14 @@ const Icon: React.FC<IconProps> = ({
         iconData = icon;
     }
 
-    let others: IconElementProps = {};
+    let props: IconElementProps = {};
 
     if (size) {
         const style = {
             fontSize: size,
         };
 
-        others = {...style, ...rest};
+        props.style = style;
     }
 
     return (
@@ -35,7 +35,8 @@ const Icon: React.FC<IconProps> = ({
                 ${color && ("-color-" + color)}
                 ${className}
             `}
-            {...others}
+            {...props}
+            {...rest}
         >
             {iconData}
         </span>
