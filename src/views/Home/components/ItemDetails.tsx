@@ -24,27 +24,28 @@ const ItemDetails = () => {
 
 	return (
 		<Modal
-			className="game-details"
-			name="game-details"
-			size="lg"
+			className="item-details"
+			name="item-details"
+			size="xl"
+			pageScroll={false}
 		>
 			<div className="row">
 				<div className="col-6">
 					<img
 						src={itemImage}
 						alt="Game large"
-						className="game-details__image"
+						className="item-details__image"
 					/>
 				</div>
-				<div className="game-details__details col-6">
+				<div className="item-details__details col-6">
 					{
 						item?.tags?.length > 0 && (
-							<div className="game-details__tags flex">
+							<div className="item-details__tags flex">
 								{
 									item?.tags?.map((tag, index) => (
 										<div
 											key={index}
-											className="game-details__tag flex flex:center-all"
+											className="item-details__tag flex flex:center-all"
 										>
 											{tag}
 										</div>
@@ -53,18 +54,17 @@ const ItemDetails = () => {
 							</div>
 						)
 					}
-					<h2 className="game-details__title mt:_4">{item?.name}</h2>
-					<h5 className="game-details__price mt:_1">
+					<h2 className="item-details__title mt:_4">{item?.name}</h2>
+					<h5 className="item-details__price mt:_1">
 						{item?.currency} {item?.price}
 					</h5>
-					<p className="game-details__description mt:_5 mb:_5">
+					<p className="item-details__description mt:_5 mb:_5">
 						{item?.description}
 					</p>
 					<Button
-						id="add-to-card-btn"
 						onClick={saveToCart}
 						loading={addingToCart}
-						className="game-details__cart__btn"
+						color="black"
 						loaderColor="white"
 					>
 						ADD TO CART
