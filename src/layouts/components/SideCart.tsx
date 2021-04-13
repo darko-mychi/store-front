@@ -73,6 +73,7 @@ const SideCart: React.FC<SideCartProps> = ({
                     cart.length === 0 ? (
                         <div
                             style={{ padding: 25 }}
+                            className="side__cart__empty"
                         >
                             Cart is empty
                         </div>
@@ -89,19 +90,21 @@ const SideCart: React.FC<SideCartProps> = ({
                         </div>
                     )
                 }
-                <a
-                    href="/"
-                    className="side__cart__footer"
-                    v-if="cart.length > 0"
-                    onClick={closeAndRoute}
-                >
-                    <button className="side__cart__checkout flex flex:center-between w:100">
-                        <span className="checkout__label">CHECKOUT</span>
-                        <span className="checkout__inner flex flex:center-all">
-                            GHS {getTotalPrice()}
-                        </span>
-                    </button>
-                </a>
+                {cart.length > 0 && (
+                    <a
+                        href="/"
+                        className="side__cart__footer"
+                        v-if="cart.length > 0"
+                        onClick={closeAndRoute}
+                    >
+                        <button className="side__cart__checkout flex flex:center-between w:100">
+                            <span className="checkout__label">CHECKOUT</span>
+                            <span className="checkout__inner flex flex:center-all">
+                                GHS {getTotalPrice()}
+                            </span>
+                        </button>
+                    </a>
+                )}
             </div>
         </>
     );
