@@ -1,6 +1,6 @@
 import ClipLoader from "react-spinners/ClipLoader";
 import Button from "@/components/Button";
-import { useStore } from "@/utils/glass/store";
+import { useStore } from "glassx";
 import { useTitle } from "@/utils/hooks";
 import { ItemsState } from "./components/@types/Item";
 
@@ -12,7 +12,9 @@ import Main from "@/layouts/Main";
 
 const Home: React.FC<any> = ({
 	fetchItems,
-	state,
+	loading,
+	pager,
+	showLoadMore
 }) => {
 	useTitle("Home");
 
@@ -37,7 +39,7 @@ const Home: React.FC<any> = ({
 				<ItemDetails />
 				<div className="flex flex:center-all">
 					{
-						state.loadingItems && (
+						loading && (
 							<div className="section__loader flex-col flex:center-all">
 								<ClipLoader />
 								<p>Loading items...</p>
@@ -46,9 +48,9 @@ const Home: React.FC<any> = ({
 					}
 					{
 						// using pagination to "piece-load" content
-						(state.showLoadMore && !state.loadingItems) && (
+						(showLoadMore && !loading) && (
 							<Button
-								onClick={() => fetchItems(state.pager)}
+								onClick={() => fetchItems(pager)}
 								color="black"
 							>
 								load more

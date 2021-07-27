@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import GlassX, { useStore } from "../utils/glass/store";
+import GlassX, { useStore } from "glassx";
 import { Navigator, StepViewProps } from "./@types/StepView";
 
 const StepView: React.FC<StepViewProps> = ({

@@ -1,8 +1,8 @@
+import { useStore } from "glassx";
+import { GlassRouter } from "glass-router";
+import { CartItemCardProps, CartState, SideCartProps } from "./@types/SideCart";
 import Button from "@/components/Button"
 import Icon from "@/components/Icon";
-import { GlassRouter } from "@/utils/glass/router";
-import { useStore } from "@/utils/glass/store";
-import { CartItemCardProps, CartState, SideCartProps } from "./@types/SideCart";
 
 const SideCart: React.FC<SideCartProps> = ({
     cartOpen,

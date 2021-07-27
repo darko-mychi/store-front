@@ -5,19 +5,20 @@ import TopNav from "./components/TopNav"
 
 const Main: React.FC<any> = ({
     children,
-    className
+    className,
+    page
 }) => {
     const [cartOpen, setCartOpen] = useState(false);
 
     const controls = {cartOpen, setCartOpen};
 
     return (
-        <div className={`auth__layout ${cartOpen && "-cart-open"}`}>
+        <div className={`${page}--layout auth__layout ${cartOpen && "-cart-open"}`}>
             <div className="auth__layout__content">
                 <TopNav />
                 <div className="layout__content">
                     <SideCart {...controls} />
-                    <div className={className}>
+                    <div className={`${className} page`}>
                         {children}
                     </div>
                     <Footer />

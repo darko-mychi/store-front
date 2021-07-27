@@ -1,5 +1,5 @@
 import { ErrorBoundary } from './utils';
-import { GlassRouter } from './utils/glass/router';
+import { GlassRouter } from 'glass-router';
 
 import "./store";
 import "./routes";

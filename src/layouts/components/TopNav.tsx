@@ -1,7 +1,6 @@
-import { Link } from "@/utils/glass/router";
+import { Link } from "glass-router";
 import { useTopNav } from "@/utils/hooks";
-import Logo from "@/assets/images/logo.svg";
-import { useStore } from "@/utils/glass/store";
+import { useStore } from "glassx";
 import Icon from "@/components/Icon";
 import Button from "@/components/Button";
 
@@ -17,7 +16,7 @@ const TopNav = () => {
         <nav className={`layout__topnav flex:center-all ${active && "-active"} ${hidden && "-hidden"}`}>
             <div className="layout__topnav__inner flex flex:center-between">
                 <Link to={{ name: "home" }} className="logo__container">
-                    <img src={Logo} alt="Game Central" className="logo" />
+                    <h6 className="logo">BookPharm</h6>
                 </Link>
 
                 {hasAuth ? <TopNavAuth /> : <TopNavGuest />}

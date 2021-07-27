@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "449.css": "^1.0.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -16,6 +17,8 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "customize-cra": "^1.0.0",
+    "glass-router": "^0.5.0",
+    "glassx": "^0.0.3",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-app-rewired": "^2.1.8",

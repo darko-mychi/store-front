@@ -61,7 +61,7 @@ All routing operations can be performed on the glassrouter object no matter the 
 Just as said above, the Glass Router (GlassRX) uses a syntax fairly the same as vue-router's syntax. As such, you can simply import the router object and call the `push` method.
 
 ```ts
-import { GlassRouter } from "./utils/glass/router";
+import { GlassRouter } from "glass-router";
 
 return GlassRouter.push("/auth/login");
 ```
@@ -88,7 +88,7 @@ Routing with the route name is a good practice, as it prevents repition and easi
 GlassRX also provides a simple way to route when using JSX, just as done with `react-router`
 
 ```ts
-import { Link } from "./utils/glass/router";
+import { Link } from "glass-router";
 
 <Link to="/home">Homepage</Link>
 ```
