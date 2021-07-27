@@ -1,12 +1,38 @@
 import Button from "@/components/Button";
-import Modal from "react-ts-modal";
-import { useStore } from "glassx";
+import Modal, { modal } from "react-ts-modal";
+import GlassX, { useStore } from "glassx";
 import { useState } from "react";
 import { ItemState } from "./@types/Item";
+import { CartItem } from "@/layouts/components/@types/SideCart";
 
 const ItemDetails = () => {
 	const [item]: ItemState = useStore("item");
+	const [cart, setCart] = useStore("cart");
 	const [addingToCart, setAddingToCart] = useState(false);
+
+	const updateCart = (cartItem: Partial<CartItem>) => {
+		const itemExists = cart.find((item: any) => item.id === cartItem.id);
+
+		if (!itemExists) {
+			cartItem.quantity = 1;
+
+			return GlassX.set({ cart: [...cart, cartItem] });
+		}
+
+		const items: any[] = [];
+
+		cart.forEach((item: any) => {
+			if (item.id === cartItem.id) {
+				item.quantity += 1;
+			}
+
+			items.push(item);
+		});
+
+		// setting double state cos of a bug with glassx
+		GlassX.set({ cart: items });
+		setCart(items);
+	};
 
     let itemImage = item?.image;
 
@@ -16,10 +42,12 @@ const ItemDetails = () => {
 
 	const saveToCart = () => {
 		setAddingToCart(true);
-
+		
 		setTimeout(() => {
-			setAddingToCart(true);
-		}, 3000);
+			updateCart(item);
+			setAddingToCart(false);
+			modal.hide("item-details");
+		}, 30);
 	};
 
 	return (

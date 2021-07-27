@@ -16,7 +16,7 @@ const TopNav = () => {
         <nav className={`layout__topnav flex:center-all ${active && "-active"} ${hidden && "-hidden"}`}>
             <div className="layout__topnav__inner flex flex:center-between">
                 <Link to={{ name: "home" }} className="logo__container">
-                    <h6 className="logo">BookPharm</h6>
+                    <h6 className="logo-text">BookPharm</h6>
                 </Link>
 
                 {hasAuth ? <TopNavAuth /> : <TopNavGuest />}

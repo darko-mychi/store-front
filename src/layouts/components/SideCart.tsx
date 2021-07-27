@@ -1,6 +1,7 @@
-import { useStore } from "glassx";
+import GlassX, { useStore } from "glassx";
 import { GlassRouter } from "glass-router";
-import { CartItemCardProps, CartState, SideCartProps } from "./@types/SideCart";
+import { useCallback, useEffect, useState } from "react";
+import { CartItem, CartItemCardProps, CartState, SideCartProps } from "./@types/SideCart";
 import Button from "@/components/Button"
 import Icon from "@/components/Icon";
 
@@ -9,6 +10,8 @@ const SideCart: React.FC<SideCartProps> = ({
     setCartOpen
 }) => {
     const [cart]: CartState = useStore("cart");
+    const [qty, setQty] = useState(0);
+    const [price, setPrice] = useState(0);
 
     const checkBodyScroll = (cartOpen: boolean) => {
         if (cartOpen) {
@@ -31,15 +34,34 @@ const SideCart: React.FC<SideCartProps> = ({
         });
     };
 
-    const getTotalPrice = () => {
+    const getTotalPrice = useCallback(() => {
         let totalPrice = 0;
 
-        cart.forEach(({ price }) => {
-            totalPrice = Number(price) + totalPrice;
+        cart.forEach(({ price, quantity }) => {
+            totalPrice = (Number(price) * Number(quantity)) + totalPrice;
         });
 
-        return totalPrice;
-    };
+        setPrice(totalPrice);
+    }, [cart]);
+
+    const getQuantity = useCallback(() => {
+        let totalQuantity = 0;
+
+        cart.forEach(({ quantity }) => {
+            totalQuantity += quantity;
+        });
+
+        return setQty(totalQuantity);
+    }, [cart]);
+
+    useEffect(() => {
+        getTotalPrice();
+        getQuantity();
+    }, [cart, getTotalPrice, getQuantity]);
+
+    useEffect(() => {
+        checkBodyScroll(cartOpen);
+    });
 
     return (
         <>
@@ -51,8 +73,8 @@ const SideCart: React.FC<SideCartProps> = ({
                     <div className="floating__cart__content flex flex:center-between">
                         <Icon>shopping_cart</Icon>
                         <span className="item__count ml:_1">
-                            {cart.length}{" "}
-                            {cart.length === 1 ? "Item" : "Items"}
+                            {qty}{" "}
+                            {qty === 1 ? "Item" : "Items"}
                         </span>
                     </div>
                 </Button>
@@ -60,8 +82,8 @@ const SideCart: React.FC<SideCartProps> = ({
             <div className={`side__cart ${cartOpen && "-open"}`}>
                 <div className="side__cart__header flex flex:center-between">
                     <span className="title">
-                        {cart.length}{" "}
-                        {cart.length === 1 ? "Item" : "Items"}
+                        {qty}{" "}
+                        {qty === 1 ? "Item" : "Items"}
                     </span>
                     <Icon
                         icon="close"
@@ -100,7 +122,7 @@ const SideCart: React.FC<SideCartProps> = ({
                         <button className="side__cart__checkout flex flex:center-between w:100">
                             <span className="checkout__label">CHECKOUT</span>
                             <span className="checkout__inner flex flex:center-all">
-                                GHS {getTotalPrice()}
+                                GHS {price.toFixed(2)}
                             </span>
                         </button>
                     </a>
@@ -111,31 +133,65 @@ const SideCart: React.FC<SideCartProps> = ({
 };
 
 const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
-    const { quantity, image, name, currency, price } = item;
+    const [glob, setCart]: CartState = useStore("cart");
+
+    const { quantity, image, name, currency, price, id } = item;
+
+    const updateCount = (action: string) => {
+        const cart: CartItem[] = GlassX.get("cart");
+        const items: CartItem[] = [];
+
+        console.log(cart);
+
+        cart.forEach((cartItem) => {
+            if (cartItem.id !== id) {
+                items.push(cartItem);
+            } else {
+                if (action === "add") {
+                    cartItem.quantity += 1;
+                    items.push(cartItem);
+                }
+
+                if (action === "remove") {
+                    cartItem.quantity -= 1;
+
+                    if (cartItem.quantity > 0) {
+                        items.push(cartItem);
+                    }
+                }
+            }
+        });
+
+        console.log(items);
+
+        // setting double state cos of a bug with glassx
+        setCart(items);
+        GlassX.set({ cart: items });
+    };
 
     return (
-        <div className="cart-game__card flex">
-            <div className="cart-game__card__quantities">
-                <button>
+        <div className="cart-item__card flex">
+            <div className="cart-item__card__quantities">
+                <button onClick={() => updateCount("add")}>
                     <Icon>add</Icon>
                 </button>
-                <div className="cart-game__card__quantity">
+                <div className="cart-item__card__quantity">
                     {quantity}
                 </div>
-                <button>
+                <button onClick={() => updateCount("remove")}>
                     <Icon>remove</Icon>
                 </button>
             </div>
             <img
                 src={typeof image === "string" ? image : image[0]}
                 alt="Cart item"
-                className="cart-game__card__img"
+                className="cart-item__card__img"
             />
-            <div className="cart-game__card__details">
-                <h2 className="cart-game__card__name">
+            <div className="cart-item__card__details">
+                <h2 className="cart-item__card__name">
                     {name}
                 </h2>
-                <h5 className="cart-game__card__price mt:_1">
+                <h5 className="cart-item__card__price mt:_1">
                     {currency} {price}
                 </h5>
             </div>
