@@ -17,8 +17,8 @@ const Main: React.FC<any> = ({
             <div className="auth__layout__content">
                 <TopNav />
                 <div className="layout__content">
-                    <SideCart {...controls} />
-                    <div className={`${className} page`}>
+                    {page !== "checkout" && <SideCart {...controls} />}
+                    <div className={`${className ? className : ""} ${page && page + "page"} page`}>
                         {children}
                     </div>
                     <Footer />

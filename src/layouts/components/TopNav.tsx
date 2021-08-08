@@ -19,7 +19,7 @@ const TopNav = () => {
                     <h6 className="logo-text">BookPharm</h6>
                 </Link>
 
-                {hasAuth ? <TopNavAuth /> : <TopNavGuest />}
+                {/* {hasAuth ? <TopNavAuth /> : <TopNavGuest />} */}
             </div>
         </nav>
     );

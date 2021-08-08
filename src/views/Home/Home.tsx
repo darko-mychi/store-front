@@ -21,7 +21,7 @@ const Home: React.FC<any> = ({
 	const [items]: ItemsState = useStore("items");
 
 	return (
-		<Main className="homepage page">
+		<Main page="home">
 			<Hero />
 
 			<div className="page__content">

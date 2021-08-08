@@ -6,7 +6,7 @@ const Checkout = () => {
 
 	return (
 		<Main page="checkout">
-			<div className="page__content">
+			<div className="page__content min-h:100vh mt:_5">
 				Checkout
 			</div>
 		</Main>

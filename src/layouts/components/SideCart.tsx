@@ -1,5 +1,5 @@
 import GlassX, { useStore } from "glassx";
-import { GlassRouter } from "glass-router";
+import { useRoute } from "glass-router";
 import { useCallback, useEffect, useState } from "react";
 import { CartItem, CartItemCardProps, CartState, SideCartProps } from "./@types/SideCart";
 import Button from "@/components/Button"
@@ -12,6 +12,7 @@ const SideCart: React.FC<SideCartProps> = ({
     const [cart]: CartState = useStore("cart");
     const [qty, setQty] = useState(0);
     const [price, setPrice] = useState(0);
+    const navigate = useRoute();
 
     const checkBodyScroll = (cartOpen: boolean) => {
         if (cartOpen) {
@@ -26,12 +27,11 @@ const SideCart: React.FC<SideCartProps> = ({
         checkBodyScroll(!cartOpen);
     };
 
-    const closeAndRoute = () => {
+    const closeAndRoute = (e: any) => {
+        e.preventDefault();
         toggleSideCart();
 
-        return GlassRouter.push({
-          name: "checkout",
-        });
+        return navigate("/checkout");
     };
 
     const getTotalPrice = useCallback(() => {
@@ -133,7 +133,7 @@ const SideCart: React.FC<SideCartProps> = ({
 };
 
 const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
-    const [glob, setCart]: CartState = useStore("cart");
+    const [, setCart]: CartState = useStore("cart");
 
     const { quantity, image, name, currency, price, id } = item;
 
